@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <!-- <link rel="stylesheet" href="/style.css"> -->
+  <title>FEC Demo</title>
+</head>
+
+<body>
+  <div id="PhotoGalery"></div>
+  <div id="Reservations"></div>
+  <div id="ThingsToDo"></div>
+  <div id="Reviews"></div>
+  <script src="http://localhost:3000/bundle.js"></script>
+  <!-- <script src="http://localhost:3002/app.js"></script>
+  <script src="http://localhost:3003/app.js"></script>
+  <script src="http://localhost:3004/app.js"></script> -->
+  <!-- see: https://reactjs.org/docs/react-without-jsx.html -->
+  <script>
+    // ReactDOM.render(
+    //   React.createElement(PhotoGalery),
+    //   document.getElementById('PhotoGalery')
+    // );
+    ReservationsModule.default.ReactDOM.render(
+      ReservationsModule.default.React.createElement(ReservationsModule.default.ReservationsModule),
+      document.getElementById('Reservations')
+    );
+    // ReactDOM.render(
+    //   React.createElement(ThingsToDo),
+    //   document.getElementById('ThingsToDo')
+    // );
+    // ReactDOM.render(
+    //   React.createElement(Reviews),
+    //   document.getElementById('Reviews')
+    // );
+  </script>
+</body>
+
+</html>
