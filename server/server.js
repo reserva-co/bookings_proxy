@@ -5,4 +5,4 @@ const port = 3000;
 
 app.use('/listings/:id', express.static('../public/'));
 
-app.listen(port, () => console.log('Listening on port 3005'));
+app.listen(port, () => console.log('Listening on port 3000'));

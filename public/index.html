@@ -8,32 +8,41 @@
 </head>
 
 <body>
-  <div id="PhotoGalery"></div>
-  <div id="Reservations"></div>
-  <div id="ThingsToDo"></div>
-  <div id="Reviews"></div>
+  <div id="PhotoGallery"></div>
+  <img style="display: inline-block;" src="https://i.imgur.com/c1LNCeX.png" />
+  <div style="display: inline-block;" id="Reservations"></div>
+  <div style="margin: auto; display:flex">
+      <div id="Reviews"></div>
+    </div>
+    <div style="position: relative; display:table">
+      <div id="Location"></div>
+    </div>
+  <script crossorigin src="https://unpkg.com/react@16/umd/react.development.js"></script>
+  <script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+  <script src="https://unpkg.com/styled-components/dist/styled-components.min.js"></script>
+  <script src="http://localhost:3001/bundle.js"></script>
+  <script src="http://localhost:3002/main.js"></script>
   <script src="http://localhost:3003/bundle.js"></script>
-  <!-- <script src="http://localhost:3002/app.js"></script>
-  <script src="http://localhost:3003/app.js"></script>
-  <script src="http://localhost:3004/app.js"></script> -->
-  <!-- see: https://reactjs.org/docs/react-without-jsx.html -->
+  <script src="http://localhost:3004/bundle.js"></script>
   <script>
-    // ReactDOM.render(
-    //   React.createElement(PhotoGalery),
-    //   document.getElementById('PhotoGalery')
-    // );
+    const id = parent.document.URL.match(/[0-9]*$/);
+
+    ReservationsModule.default.ReactDOM.render(
+      ReservationsModule.default.React.createElement(Photos.default),
+      document.getElementById('PhotoGallery')
+    );
+    ReservationsModule.default.ReactDOM.render(
+      ReservationsModule.default.React.createElement(Reviews.default),
+      document.getElementById('Reviews')
+    );
     ReservationsModule.default.ReactDOM.render(
       ReservationsModule.default.React.createElement(ReservationsModule.default.ReservationsModule),
       document.getElementById('Reservations')
     );
-    // ReactDOM.render(
-    //   React.createElement(ThingsToDo),
-    //   document.getElementById('ThingsToDo')
-    // );
-    // ReactDOM.render(
-    //   React.createElement(Reviews),
-    //   document.getElementById('Reviews')
-    // );
+    ReservationsModule.default.ReactDOM.render(
+      ReservationsModule.default.React.createElement(Location.default),
+      document.getElementById('Location')
+    );
   </script>
 </body>
 
