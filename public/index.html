@@ -1,49 +1,114 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<head>
-  <meta charset="UTF-8">
-  <!-- <link rel="stylesheet" href="/style.css"> -->
-  <title>FEC Demo</title>
-</head>
+  <head>
+    <meta charset="UTF-8">
+    <title>Birbhousing - FEC</title>
+    <style>
+      body {
+        margin: 0;
+      }
 
-<body>
-  <div id="PhotoGallery"></div>
-  <img style="display: inline-block;" src="https://i.imgur.com/c1LNCeX.png" />
-  <div style="display: inline-block;" id="Reservations"></div>
-  <div style="margin: auto; display:flex">
-      <div id="Reviews"></div>
-    </div>
-    <div style="position: relative; display:table">
-      <div id="Location"></div>
-    </div>
-  <script crossorigin src="https://unpkg.com/react@16/umd/react.development.js"></script>
-  <script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
-  <script src="https://unpkg.com/styled-components/dist/styled-components.min.js"></script>
-  <script src="http://localhost:3001/bundle.js"></script>
-  <script src="http://localhost:3002/main.js"></script>
-  <script src="http://localhost:3003/bundle.js"></script>
-  <script src="http://localhost:3004/bundle.js"></script>
-  <script>
-    const id = parent.document.URL.match(/[0-9]*$/);
+      .container {
+        display: inline-flex;
+        flex-direction: row;
+        align-items: stretch;
+        min-width: 1270px;
+      }
 
-    ReservationsModule.default.ReactDOM.render(
-      ReservationsModule.default.React.createElement(Photos.default),
-      document.getElementById('PhotoGallery')
-    );
-    ReservationsModule.default.ReactDOM.render(
-      ReservationsModule.default.React.createElement(Reviews.default),
-      document.getElementById('Reviews')
-    );
-    ReservationsModule.default.ReactDOM.render(
-      ReservationsModule.default.React.createElement(ReservationsModule.default.ReservationsModule),
-      document.getElementById('Reservations')
-    );
-    ReservationsModule.default.ReactDOM.render(
-      ReservationsModule.default.React.createElement(Location.default),
-      document.getElementById('Location')
-    );
-  </script>
-</body>
+      .left-column {
+        flex-wrap: nowrap;
+        width: calc(100% - 460px);
+      }
+
+      .right-column {
+        flex-wrap: nowrap;
+        box-sizing: border-box;
+        width: 450px;
+        padding-right: 50px;
+      }
+
+      #Reviews {
+        margin-left: 35px;
+      }
+
+      .fixed {
+        position: fixed;
+        top: 0;
+      }
+
+      #Reviews {
+        font-family: 'Helvetica';
+      }
+
+      #Location {
+        float: left;
+        clear: both;
+        width: 100%;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div id='Photos'></div>
+    <div class='container'>
+      <div class='left-column'>
+        <img style="width: 660px; display: inline-block;"
+          src="https://birdhouse325.s3-us-west-1.amazonaws.com/desc.png" />
+        <div id="Reviews"></div>
+      </div>
+      <div class='right-column'>
+        <div id="Booking" style="display: inline-block;"></div>
+      </div>
+    </div>
+    <div id="Location"></div>
+    <!-- These two lines are just one way to get the React library running in the client's browser -->
+    <script crossorigin src="https://unpkg.com/react@16/umd/react.production.min.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.production.min.js"></script>
+    <script src="https://unpkg.com/styled-components/dist/styled-components.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"
+      integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous">
+      </script>
+    <script src="http://ec2-3-17-24-224.us-east-2.compute.amazonaws.com:3001/bundle.js"></script>
+    <script src="http://ec2-54-183-177-3.us-west-1.compute.amazonaws.com:3002/main.js"></script>
+    <script src="http://ec2-54-153-79-78.us-west-1.compute.amazonaws.com:3003/bundle.js"></script>
+    <script src="http://54.67.24.50:3004/bundle.js"></script>
+    <script>
+      const id = parent.document.URL.match(/[0-9]*$/);
+      ReservationsModule.default.ReactDOM.render(
+        ReservationsModule.default.React.createElement(Photos.default),
+        document.getElementById('Photos')
+      );
+      ReservationsModule.default.ReactDOM.render(
+        ReservationsModule.default.React.createElement(Reviews.default),
+        document.getElementById('Reviews')
+      );
+      ReservationsModule.default.ReactDOM.render(
+        ReservationsModule.default.React.createElement(ReservationsModule.default.ReservationsModule),
+        document.getElementById('Booking')
+      );
+      ReservationsModule.default.ReactDOM.render(
+        ReservationsModule.default.React.createElement(Location.default),
+        document.getElementById('Location')
+      );
+
+      $(window).on('scroll', function () {
+        const bottomStop = $('body').height() - 400;
+        if ($(window).scrollTop() > 400) {
+          $('#Booking').addClass("fixed");
+        } else {
+          $('#Booking').removeClass("fixed");
+        }
+        if ($(window).scrollTop() > bottomStop) {
+          $('#Booking').removeClass("fixed");
+          $('.right-column').css('align-self', 'flex-end');
+        } else {
+          $('.right-column').css('align-self', 'auto');
+        }
+      });
+      
+    </script>
+  </body>
 
 </html>
+
